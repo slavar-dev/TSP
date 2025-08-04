@@ -5,6 +5,7 @@
 #include <limits>
 #include <algorithm>
 #include "city.h"
+
 class TSP {
 private:
     int n; // total number of cities
@@ -17,23 +18,29 @@ private:
     std::vector<std::vector<int>> parent;
 
 public:
+    //TSP class constructor
     TSP(int n_) : n(n_) {
         dist.resize(n, std::vector<int>(n, 0));
         dp.resize(1 << n, std::vector<int>(n, -1));
         parent.resize(1 << n, std::vector<int>(n, -1));
     }
 
+
+    /*all of these method functions will be moved to TSP.cpp file to maintain OOP architecture (class description and method functions should be in different fiules*/
     void addCity(const std::string& name) {
-        cities.emplace_back(name, cities.size());
+        cities.emplace_back(name, cities.size()); //placing new city object at the end of <city> vector, without copying and memory over-usage
     }
 
-    void setDistance(const std::string& cityName1, const std::string& cityName2, int d) {
+    void setDistance(const std::string& cityName1, const std::string& cityName2, int d) /*this code should be extended with the code from city.h(calculate distance using city coords - 
+        Pythagoras theorem. Code now sets distances directly for testing purposes
+        */
+    {
         int i = -1, j = -1;
         for (int k = 0; k < cities.size(); ++k) {
             if (cities[k].getName() == cityName1) i = k;
-            if (cities[k].getName() == cityName2) j = k;
+            if (cities[k].getName() == cityName2) j = k; //pretty dumb code for filling <dist> vector
         }
-        if (i != -1 && j != -1) {
+        if (i != -1 && j != -1) {  
             dist[i][j] = d;
             dist[j][i] = d; // route cost is the same in both directions
         }
