@@ -61,7 +61,7 @@ public:
         int ans = INT_MAX;
         for (int city = 0; city < n; ++city) {
             if (!(mask & (1 << city))) { // åif the city is not visited
-                int newAns = dist[pos][city] + tsp(mask | (1 << city), city);
+                int newAns = dist[pos][city] + tsp(mask | (1 << city), city); //recursive calc
                 if (newAns < ans) {
                     ans = newAns;
                     parent[mask][pos] = city; // save the route (remember the way)
@@ -71,6 +71,28 @@ public:
         dp[mask][pos] = ans;
         return ans;
     }
+
+    /*
+
+    void loadFromFile(const std::string& filename) {
+        std::ifstream fin(filename);
+        if (!fin) {
+            std::cerr << "File not exist!\n";
+            return;
+        }
+
+        int numCities;
+        fin >> numCities;
+        n = numCities;
+
+        cities.clear();
+        for (int i = 0; i < n; ++i) {
+            std::string cityName;
+            fin >> cityName;
+            addCity(cityName);
+        }
+
+        */
 
     void solve() {
         int minCost = tsp(1, 0); // starting at city  0
