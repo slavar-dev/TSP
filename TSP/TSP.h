@@ -5,6 +5,8 @@
 #include <limits>
 #include <algorithm>
 #include "city.h"
+#include <fstream>
+#include <sstream>
 
 class TSP {
 private:
@@ -72,9 +74,10 @@ public:
         return ans;
     }
 
-    /*
+    /*com*/
 
-    void loadFromFile(const std::string& filename) {
+    void loadCitiesFromFile(const std::string& filename) {
+       
         std::ifstream fin(filename);
         if (!fin) {
             std::cerr << "File not exist!\n";
@@ -90,9 +93,10 @@ public:
             std::string cityName;
             fin >> cityName;
             addCity(cityName);
+            std::cout << cityName << "\n";
         }
-
-        */
+        std::cout << "Total cities read from file: " << n << "\n";
+    }
 
     void solve() {
         int minCost = tsp(1, 0); // starting at city  0

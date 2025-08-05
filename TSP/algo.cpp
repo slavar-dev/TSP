@@ -9,7 +9,7 @@ int main() {
     tsp.addCity("City2");
     tsp.addCity("City3");
     tsp.addCity("City4");
-    tsp.addCity("City5"); //add cities to thó list
+    tsp.addCity("City5"); //add cities to the list
 
     tsp.setDistance("City1", "City2", 800);
     tsp.setDistance("City1", "City3", 1000);
@@ -23,10 +23,11 @@ int main() {
     tsp.setDistance("City4", "City5", 1800); //dumb code directly assigning distances (testing purposes). Method for distance reading from file is located in TCP.h file.
 
 
-    /* tsp.loadFromFile("input.txt"); temporary commented out */
+    tsp.loadCitiesFromFile("../temp/cities.txt"); 
 
 
     tsp.solve(); //find optimal solution
+
 
     return 0;
 }
