@@ -7,6 +7,7 @@
 #include "city.h"
 #include <fstream>
 #include <sstream>
+#include <string>
 
 class TSP {
 private:
@@ -28,10 +29,7 @@ public:
     }
 
 
-    /*all of these method functions will be moved to TSP.cpp file to maintain OOP architecture (class description and method functions should be in different fiules*/
-    void addCity(const std::string& name) {
-        cities.emplace_back(name, cities.size()); //placing new city object at the end of <city> vector, without copying and memory over-usage
-    }
+   
 
     void setDistance(const std::string& cityName1, const std::string& cityName2, int d) /*this code should be extended with the code from city.h(calculate distance using city coords - 
         Pythagoras theorem. Code now sets distances directly for testing purposes
@@ -76,6 +74,8 @@ public:
 
     /*com*/
 
+   
+
     void loadCitiesFromFile(const std::string& filename) {
        
         std::ifstream fin(filename);
@@ -84,9 +84,28 @@ public:
             return;
         }
 
+        std::string subset;
+        char delimiter = ';'; //  semicolon as delimiter
+
+        std::ifstream inputFile("../temp/cities.txt");
+        while (std::getline(inputFile, subset, delimiter)) {
+            // 'subset' now contains the string segment before the delimiter
+
+            std::cout << "subset: " << subset << std::endl;
+        }
+
+
+           cities.emplace_back(name, cities.size()); //placing new city object at the end of <city> vector, without copying and memory over-usage
+
+
+
+        }
+    /*
         int numCities;
         fin >> numCities;
         n = numCities;
+        
+       
 
         cities.clear();
         for (int i = 0; i < n; ++i) {
@@ -96,6 +115,8 @@ public:
             std::cout << cityName << "\n";
         }
         std::cout << "Total cities read from file: " << n << "\n";
+
+        */
     }
 
     void solve() {
